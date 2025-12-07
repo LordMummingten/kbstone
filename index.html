@@ -1,2122 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width,initial-scale=1.0,user-scalable=no" name="viewport"/>
-  <meta content="yes" name="apple-mobile-web-app-capable"/>
-  <meta content="default" name="apple-mobile-web-app-status-bar-style"/>
-  <meta content="KB Stone" name="apple-mobile-web-app-title"/>
-  <meta content="#00A3E8" name="theme-color"/>
-  <title>
-   KB Stone Pro
-  </title>
-  <link href="manifest.json" rel="manifest"/>
-  <link href="icon-180.png" rel="apple-touch-icon"/>
-  <style>
-   /* KB Stone Pro - Styles v2 */
-
-:root {
-  --blue: #00A3E8;
-  --dark: #2d2d2d;
-  --gray: #666;
-  --light: #f5f5f5;
-  --green: #22c55e;
-  --red: #ef4444;
-  --yellow: #eab308;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--light);
-  min-height: 100vh;
-  padding-bottom: 100px;
-}
-
-/* Header */
-.header {
-  background: var(--blue);
-  color: #fff;
-  padding: 14px 16px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.logo small {
-  display: block;
-  font-size: 10px;
-  font-weight: 400;
-  opacity: 0.85;
-}
-
-.biz {
-  font-size: 9px;
-  margin-top: 6px;
-  opacity: 0.9;
-}
-
-.view-btns button {
-  padding: 6px 10px;
-  border: none;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-left: 4px;
-}
-
-.view-btns .active {
-  background: #fff;
-  color: var(--blue);
-}
-
-.view-btns button:not(.active) {
-  background: rgba(255,255,255,0.2);
-  color: #fff;
-}
-
-/* Container */
-.container {
-  max-width: 650px;
-  margin: 0 auto;
-  padding: 12px;
-}
-
-/* Cards */
-.card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 14px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-}
-
-.card-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--dark);
-  margin-bottom: 14px;
-  padding-left: 10px;
-  border-left: 3px solid var(--blue);
-}
-
-/* Forms */
-label {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--dark);
-  margin-bottom: 4px;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 9px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 13px;
-  margin-bottom: 10px;
-}
-
-input:focus, select:focus {
-  outline: none;
-  border-color: var(--blue);
-}
-
-.hint {
-  font-size: 9px;
-  color: var(--gray);
-  margin-top: -8px;
-  margin-bottom: 10px;
-}
-
-.row2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.row3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-}
-
-/* Block Groups */
-.group {
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  margin-bottom: 12px;
-  overflow: hidden;
-}
-
-.group.open {
-  border-color: var(--blue);
-}
-
-.group-head {
-  background: #f8f9fa;
-  padding: 12px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.group-head:hover {
-  background: #f0f7ff;
-}
-
-.group-head h4 {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--dark);
-}
-
-.group-head .sum {
-  font-size: 11px;
-  color: var(--gray);
-  margin-left: 8px;
-}
-
-.group-head .arrow {
-  transition: transform 0.2s;
-}
-
-.group.open .arrow {
-  transform: rotate(180deg);
-}
-
-.group-body {
-  display: none;
-  padding: 14px;
-  border-top: 1px solid #eee;
-}
-
-.group.open .group-body {
-  display: block;
-}
-
-.group-totals {
-  background: #f0f9ff;
-  padding: 10px 12px;
-  font-size: 11px;
-}
-
-.group-totals .line {
-  display: flex;
-  justify-content: space-between;
-  padding: 3px 0;
-}
-
-.group-totals .line.total {
-  border-top: 1px solid #ccc;
-  margin-top: 6px;
-  padding-top: 6px;
-  font-weight: 700;
-  color: var(--blue);
-}
-
-/* Buttons */
-.del-btn {
-  background: var(--red);
-  color: #fff;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 10px;
-  cursor: pointer;
-}
-
-.add-btn {
-  width: 100%;
-  padding: 14px;
-  border: 2px dashed var(--blue);
-  border-radius: 10px;
-  background: #f0f9ff;
-  color: var(--blue);
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-bottom: 14px;
-}
-
-.add-btn:hover {
-  background: #e0f2fe;
-}
-
-/* Toggle */
-.toggle-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 10px;
-  background: #f8f8f8;
-  border-radius: 6px;
-  margin-bottom: 8px;
-}
-
-.toggle-row label {
-  margin: 0;
-  font-size: 12px;
-}
-
-.toggle {
-  width: 40px;
-  height: 22px;
-  background: #ccc;
-  border-radius: 11px;
-  position: relative;
-  cursor: pointer;
-}
-
-.toggle.on {
-  background: var(--blue);
-}
-
-.toggle::after {
-  content: '';
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  background: #fff;
-  border-radius: 50%;
-  top: 2px;
-  left: 2px;
-  transition: transform 0.2s;
-}
-
-.toggle.on::after {
-  transform: translateX(18px);
-}
-
-.nested {
-  margin-top: 8px;
-  padding: 10px;
-  background: #f8fafc;
-  border-radius: 6px;
-  border-left: 3px solid var(--blue);
-}
-
-/* Material Boxes */
-.mat-box {
-  background: linear-gradient(135deg, #e8f4fc, #f0f9ff);
-  border-left: 3px solid var(--blue);
-  padding: 8px 10px;
-  border-radius: 6px;
-  margin-bottom: 6px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-}
-
-.mat-box .val {
-  font-weight: 700;
-  color: var(--blue);
-}
-
-/* Totals */
-.total-box {
-  background: linear-gradient(135deg, var(--blue), #0284c7);
-  padding: 18px;
-  border-radius: 10px;
-  color: #fff;
-  text-align: center;
-  margin: 14px 0;
-}
-
-.total-box .lbl {
-  font-size: 12px;
-  opacity: 0.9;
-}
-
-.total-box .amt {
-  font-size: 28px;
-  font-weight: 700;
-}
-
-/* Quote Rows */
-.q-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 0;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 12px;
-}
-
-.q-row.hl {
-  background: #f0f9ff;
-  margin: 0 -16px;
-  padding: 6px 16px;
-}
-
-/* Internal View */
-.internal {
-  background: #fef3c7;
-  border: 1px dashed #f59e0b;
-  border-radius: 6px;
-  padding: 10px;
-  margin-bottom: 12px;
-}
-
-.internal::before {
-  content: ' INTERNAL';
-  display: block;
-  font-size: 9px;
-  font-weight: 700;
-  color: #d97706;
-  margin-bottom: 8px;
-}
-
-.hide {
-  display: none !important;
-}
-
-/* Terms */
-.terms {
-  font-size: 9px;
-  color: var(--gray);
-  line-height: 1.5;
-  padding: 10px;
-  background: #f8f8f8;
-  border-radius: 6px;
-  margin-top: 12px;
-}
-
-/* Action Buttons */
-.btn {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-bottom: 8px;
-}
-
-.btn-primary {
-  background: var(--blue);
-  color: #fff;
-}
-
-.btn-dark {
-  background: var(--dark);
-  color: #fff;
-}
-
-.btn-outline {
-  background: #fff;
-  color: var(--blue);
-  border: 2px solid var(--blue);
-}
-
-/* Install Banner */
-.install-banner {
-  background: linear-gradient(135deg, #0284c7, var(--blue));
-  color: #fff;
-  padding: 12px 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-}
-
-.install-banner button {
-  background: #fff;
-  color: var(--blue);
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.install-banner .close-btn {
-  background: transparent;
-  color: #fff;
-  padding: 4px 8px;
-  font-size: 18px;
-}
-
-/* Print Styles */
-@media print {
-  .header, .btn, .add-btn, .del-btn, .view-btns, .internal, .install-banner, #settingsView {
-    display: none !important;
-  }
-}
-
-/* Admin Field Styling (used in settings view) */
-
-.admin-field {
-  margin-bottom: 10px;
-}
-
-.admin-field label {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--dark);
-  margin-bottom: 4px;
-}
-
-.admin-field input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 13px;
-}
-
-.admin-subsection {
-  background: #f8f9fa;
-  padding: 10px;
-  border-radius: 6px;
-  margin-top: 10px;
-}
-
-.admin-add-row {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 8px;
-}
-
-.admin-add-row input {
-  flex: 1;
-  padding: 6px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 12px;
-}
-
-.admin-btn {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  background: var(--blue);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.admin-btn:hover {
-  background: #0284c7;
-}
-
-.admin-btn-danger {
-  background: var(--red);
-}
-
-.admin-btn-danger:hover {
-  background: #dc2626;
-}
-
-.admin-hint {
-  font-size: 10px;
-  color: var(--gray);
-  line-height: 1.4;
-}
-
-.theme-toggle-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4px 0;
-}
-
-/* Block Type Item */
-.block-type-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  margin-bottom: 6px;
-  font-size: 11px;
-}
-
-.block-type-item .info {
-  flex: 1;
-}
-
-.block-type-item .name {
-  font-weight: 600;
-  color: var(--dark);
-}
-
-.block-type-item .details {
-  color: var(--gray);
-  font-size: 10px;
-}
-
-.block-type-item .actions {
-  display: flex;
-  gap: 4px;
-}
-
-.block-type-item button {
-  padding: 4px 8px;
-  border: none;
-  border-radius: 4px;
-  font-size: 10px;
-  cursor: pointer;
-}
-
-.block-type-item .edit-btn {
-  background: var(--blue);
-  color: #fff;
-}
-
-.block-type-item .del-btn {
-  background: var(--red);
-  color: #fff;
-}
-
-/* Toast Notification */
-.toast {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: var(--green);
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transform: translateY(100px);
-  opacity: 0;
-  transition: transform 0.3s, opacity 0.3s;
-  z-index: 300;
-}
-
-.toast.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Dark Mode */
-body.dark-mode {
-  --light: #1a1a1a;
-  --dark: #f5f5f5;
-  background: #121212;
-}
-
-body.dark-mode .card {
-  background: #1e1e1e;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-body.dark-mode .header {
-  background: #0284c7;
-}
-
-body.dark-mode input,
-body.dark-mode select,
-body.dark-mode textarea {
-  background: #2d2d2d;
-  border-color: #444;
-  color: #f5f5f5;
-}
-
-body.dark-mode .group {
-  border-color: #444;
-}
-
-body.dark-mode .group-head {
-  background: #2d2d2d;
-}
-
-body.dark-mode .group-head:hover {
-  background: #333;
-}
-
-body.dark-mode .group-body {
-  border-top-color: #444;
-}
-
-body.dark-mode .group-totals {
-  background: #1a2e3a;
-}
-
-body.dark-mode .mat-box {
-  background: linear-gradient(135deg, #1a2e3a, #1e3a4a);
-}
-
-body.dark-mode .terms {
-  background: #2d2d2d;
-}
-
-body.dark-mode .internal {
-  background: #3d2f0f;
-  border-color: #664d00;
-}
-
-body.dark-mode .q-row.hl {
-  background: #1a2e3a;
-}
-
-body.dark-mode .q-row {
-  border-bottom-color: #333;
-}
-
-body.dark-mode .add-btn {
-  background: #1a2e3a;
-  border-color: var(--blue);
-}
-
-body.dark-mode .btn-outline {
-  background: #1e1e1e;
-}
-
-body.dark-mode .admin-subsection {
-  background: #2d2d2d;
-}
-
-body.dark-mode .block-type-item {
-  background: #2d2d2d;
-}
-
-body.dark-mode .admin-field input {
-  background: #2d2d2d;
-  border-color: #444;
-  color: #f5f5f5;
-}
-
-body.dark-mode .hint {
-  color: #888;
-}
-  </style>
- </head>
- <body>
-  <div class="install-banner hide" id="installBanner">
-   <span>
-    Install KB Stone for quick access
-   </span>
-   <div>
-    <button onclick="installApp()">
-     Install
-    </button>
-    <button class="close-btn" onclick="dismissInstall()">
-    </button>
-   </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="KB Stone">
+  <meta name="theme-color" content="#00A3E8">
+  <title>KB Stone Pro</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="installBanner" class="install-banner hide">
+  <span>📲 Install KB Stone for quick access</span>
+  <div>
+    <button onclick="installApp()">Install</button>
+    <button class="close-btn" onclick="dismissInstall()">×</button>
   </div>
-  <div class="header">
-   <div class="header-row">
-    <div class="logo">
-     KB Stone
-     <small>
-      Pro Quote System v2
-     </small>
-    </div>
+</div>
+
+<div class="header">
+  <div class="header-row">
+    <div class="logo">KB Stone<small>Pro Quote System v2</small></div>
     <div style="display:flex;align-items:center;gap:8px;">
-     <div class="view-btns">
-      <button class="active" id="btnInt" onclick="setView('int')">
-       Internal
+      <div class="view-btns">
+        <button id="btnInt" class="active" onclick="setView('int')">Internal</button>
+        <button id="btnCli" onclick="setView('cli')">Client</button>
+      </div>
+      <button class="hamburger-btn" onclick="toggleAdmin()" aria-label="Settings">
+        <span></span><span></span><span></span>
       </button>
-      <button id="btnCli" onclick="setView('cli')">
-       Client
-      </button>
-      <button id="btnSettings" onclick="setView('settings')">
-       Settings
-      </button>
-     </div>
     </div>
-   </div>
-   <div class="biz">
-    KB Stone Pty Ltd | ABN 75 686 625 801 | 0451 838 748 |
-    <a class="__cf_email__" data-cfemail="0962606c7b666749626b7a7d66676c27667b6e" href="/cdn-cgi/l/email-protection">
-     [email protected]
-    </a>
-   </div>
   </div>
-  <!-- Toast Notification -->
-  <div class="toast" id="toast">
-   Settings Saved
+  <div class="biz">KB Stone Pty Ltd | ABN 75 686 625 801 | 0451 838 748 | <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="42292b27302d2c02292031362d2c276c2d3025">[email&#160;protected]</a></div>
+</div>
+
+<!-- Admin Sidebar Overlay -->
+<div id="adminOverlay" class="admin-overlay" onclick="toggleAdmin()"></div>
+
+<!-- Admin Sidebar Panel -->
+<div id="adminPanel" class="admin-panel">
+  <div class="admin-header">
+    <h2>⚙️ Settings</h2>
+    <button class="admin-close" onclick="toggleAdmin()">×</button>
   </div>
-  <div class="container">
-   <!-- SETTINGS VIEW -->
-   <div class="hide" id="settingsView">
-    <!-- Block Types Card -->
-    <div class="card">
-     <div class="card-title">
-      Block Types
-     </div>
-     <div id="blockTypeList">
-     </div>
-     <div class="admin-add-row">
-      <input id="newBlockCode" placeholder="Code (e.g. lg)" style="width:60px" type="text"/>
-      <input id="newBlockName" placeholder="Name (e.g. 600400300 Large)" type="text"/>
-     </div>
-     <div class="admin-add-row">
-      <input id="newBlockPrice" placeholder="Price" style="width:70px" type="number"/>
-      <input id="newBlockHeight" placeholder="H (m)" step="0.01" style="width:70px" type="number"/>
-      <input id="newBlockLength" placeholder="L (m)" step="0.1" style="width:70px" type="number"/>
-      <input id="newBlockHD" placeholder="HD" step="0.1" style="width:60px" type="number" value="1"/>
-     </div>
-     <button class="admin-btn" onclick="addBlockType()">
-      + Add Block Type
-     </button>
-    </div>
-    <!-- Material Pricing Card -->
-    <div class="card">
-     <div class="card-title">
-      Material Pricing
-     </div>
-     <div class="admin-field">
-      <label>
-       Cement (per bag)
-      </label>
-      <input id="matCement" onchange="updateMaterial('cement')" step="0.5" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       Sand (per scoop)
-      </label>
-      <input id="matSand" onchange="updateMaterial('sand')" step="0.5" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       Capping (each)
-      </label>
-      <input id="matCap" onchange="updateMaterial('cap')" step="0.5" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       AG Pipe (per m)
-      </label>
-      <input id="matPipe" onchange="updateMaterial('pipe')" step="0.5" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       Reo Bar (per m)
-      </label>
-      <input id="matReo" onchange="updateMaterial('reo')" step="0.5" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       Oxide (each)
-      </label>
-      <input id="matOxide" onchange="updateMaterial('oxide')" step="0.5" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       Stick Joints (each)
-      </label>
-      <input id="matStick" onchange="updateMaterial('stick')" step="0.5" type="number"/>
-     </div>
-    </div>
-    <!-- Equipment Rates Card -->
-    <div class="card">
-     <div class="card-title">
-      Equipment Rates
-     </div>
-     <div class="admin-field">
-      <label>
-       Staff/Machine (per day)
-      </label>
-      <input id="equipStaff" onchange="updateEquipment('staff')" step="50" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       Mobilisation (per km)
-      </label>
-      <input id="equipMob" onchange="updateEquipment('mob')" step="0.1" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       Delivery (per load)
-      </label>
-      <input id="equipDel" onchange="updateEquipment('del')" step="5" type="number"/>
-     </div>
-     <div class="card-title" style="margin-top:20px;">
-      Skip Bin Prices
-     </div>
-     <div class="admin-field">
-      <label>
-       2m Skip
-      </label>
-      <input id="skip2" onchange="updateSkipPrice(2)" step="10" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       3m Skip
-      </label>
-      <input id="skip3" onchange="updateSkipPrice(3)" step="10" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       4m Skip
-      </label>
-      <input id="skip4" onchange="updateSkipPrice(4)" step="10" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       6m Skip
-      </label>
-      <input id="skip6" onchange="updateSkipPrice(6)" step="10" type="number"/>
-     </div>
-     <div class="card-title" style="margin-top:20px;">
-      Cutting Rates
-     </div>
-     <div class="admin-field">
-      <label>
-       Base Cut Cost
-      </label>
-      <input id="cutBase" onchange="updateCutting('base')" step="0.5" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       Blade Wear Cost
-      </label>
-      <input id="cutBlade" onchange="updateCutting('blade')" step="0.1" type="number"/>
-     </div>
-    </div>
-    <!-- Profit & GST Card -->
-    <div class="card">
-     <div class="card-title">
-      Profit &amp; GST
-     </div>
-     <div class="admin-field">
-      <label>
-       Waste Allowance (%)
-      </label>
-      <input id="rateWaste" onchange="updateRate('waste')" step="1" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       Profit Margin (%)
-      </label>
-      <input id="rateProfit" onchange="updateRate('profit')" step="1" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       GST (%)
-      </label>
-      <input id="rateGst" onchange="updateRate('gst')" step="1" type="number"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       Blocks Per Hour (labour)
-      </label>
-      <input id="rateBph" onchange="updateRate('bph')" step="1" type="number"/>
-     </div>
-    </div>
-    <!-- Appearance Card -->
-    <div class="card">
-     <div class="card-title">
-      Appearance
-     </div>
-     <div class="theme-toggle-row">
-      <span>
-       Dark Mode
-      </span>
-      <div class="toggle" id="togDarkMode" onclick="toggleDarkMode()">
+  
+  <div class="admin-content">
+    <!-- Block Type Manager -->
+    <div class="admin-section">
+      <div class="admin-section-head" onclick="toggleAdminSection('blocks')">
+        <span>🧱 Block Types</span>
+        <span class="admin-arrow">▼</span>
       </div>
-     </div>
+      <div id="adminBlocks" class="admin-section-body">
+        <div id="blockTypeList"></div>
+        <div class="admin-add-row">
+          <input type="text" id="newBlockCode" placeholder="Code (e.g. lg)" style="width:60px">
+          <input type="text" id="newBlockName" placeholder="Name (e.g. 600×400×300 Large)">
+        </div>
+        <div class="admin-add-row">
+          <input type="number" id="newBlockPrice" placeholder="Price" style="width:70px">
+          <input type="number" id="newBlockHeight" placeholder="H (m)" step="0.01" style="width:70px">
+          <input type="number" id="newBlockLength" placeholder="L (m)" step="0.1" style="width:70px">
+          <input type="number" id="newBlockHD" placeholder="HD" step="0.1" style="width:60px" value="1">
+        </div>
+        <button class="admin-btn" onclick="addBlockType()">+ Add Block Type</button>
+      </div>
     </div>
-    <!-- App Icons Card -->
-    <div class="card">
-     <div class="card-title">
-      App Icons
-     </div>
-     <p class="admin-hint">
-      Upload custom icons for PWA installation. Icons should be square PNG images.
-     </p>
-     <div class="admin-field">
-      <label>
-       192192 Icon
-      </label>
-      <input accept="image/png" id="icon192Upload" onchange="handleIconUpload(192)" type="file"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       512512 Icon
-      </label>
-      <input accept="image/png" id="icon512Upload" onchange="handleIconUpload(512)" type="file"/>
-     </div>
-     <div class="admin-field">
-      <label>
-       180180 Apple Icon
-      </label>
-      <input accept="image/png" id="icon180Upload" onchange="handleIconUpload(180)" type="file"/>
-     </div>
-     <p class="admin-hint" style="margin-top:10px;">
-      Note: Icon changes require re-installing the PWA.
-     </p>
+
+    <!-- Material Pricing Manager -->
+    <div class="admin-section">
+      <div class="admin-section-head" onclick="toggleAdminSection('materials')">
+        <span>💰 Material Pricing</span>
+        <span class="admin-arrow">▼</span>
+      </div>
+      <div id="adminMaterials" class="admin-section-body">
+        <div class="admin-field">
+          <label>Cement (per bag)</label>
+          <input type="number" id="matCement" step="0.5" onchange="updateMaterial('cement')">
+        </div>
+        <div class="admin-field">
+          <label>Sand (per scoop)</label>
+          <input type="number" id="matSand" step="0.5" onchange="updateMaterial('sand')">
+        </div>
+        <div class="admin-field">
+          <label>Capping (each)</label>
+          <input type="number" id="matCap" step="0.5" onchange="updateMaterial('cap')">
+        </div>
+        <div class="admin-field">
+          <label>AG Pipe (per m)</label>
+          <input type="number" id="matPipe" step="0.5" onchange="updateMaterial('pipe')">
+        </div>
+        <div class="admin-field">
+          <label>Reo Bar (per m)</label>
+          <input type="number" id="matReo" step="0.5" onchange="updateMaterial('reo')">
+        </div>
+        <div class="admin-field">
+          <label>Oxide (each)</label>
+          <input type="number" id="matOxide" step="0.5" onchange="updateMaterial('oxide')">
+        </div>
+        <div class="admin-field">
+          <label>Stick Joints (each)</label>
+          <input type="number" id="matStick" step="0.5" onchange="updateMaterial('stick')">
+        </div>
+      </div>
     </div>
-    <!-- Reset Card -->
-    <div class="card">
-     <button class="admin-btn admin-btn-danger" onclick="resetToDefaults()">
-      Reset All to Defaults
-     </button>
+
+    <!-- Equipment Rates Manager -->
+    <div class="admin-section">
+      <div class="admin-section-head" onclick="toggleAdminSection('equipment')">
+        <span>🚜 Equipment Rates</span>
+        <span class="admin-arrow">▼</span>
+      </div>
+      <div id="adminEquipment" class="admin-section-body">
+        <div class="admin-field">
+          <label>Staff/Machine (per day)</label>
+          <input type="number" id="equipStaff" step="50" onchange="updateEquipment('staff')">
+        </div>
+        <div class="admin-field">
+          <label>Mobilisation (per km)</label>
+          <input type="number" id="equipMob" step="0.1" onchange="updateEquipment('mob')">
+        </div>
+        <div class="admin-field">
+          <label>Delivery (per load)</label>
+          <input type="number" id="equipDel" step="5" onchange="updateEquipment('del')">
+        </div>
+        <div class="admin-subsection">
+          <label style="font-weight:600;margin-bottom:8px;display:block;">Skip Bin Prices</label>
+          <div class="admin-field">
+            <label>2m³ Skip</label>
+            <input type="number" id="skip2" step="10" onchange="updateSkipPrice(2)">
+          </div>
+          <div class="admin-field">
+            <label>3m³ Skip</label>
+            <input type="number" id="skip3" step="10" onchange="updateSkipPrice(3)">
+          </div>
+          <div class="admin-field">
+            <label>4m³ Skip</label>
+            <input type="number" id="skip4" step="10" onchange="updateSkipPrice(4)">
+          </div>
+          <div class="admin-field">
+            <label>6m³ Skip</label>
+            <input type="number" id="skip6" step="10" onchange="updateSkipPrice(6)">
+          </div>
+        </div>
+        <div class="admin-subsection">
+          <label style="font-weight:600;margin-bottom:8px;display:block;">Cutting Rates</label>
+          <div class="admin-field">
+            <label>Base Cut Cost</label>
+            <input type="number" id="cutBase" step="0.5" onchange="updateCutting('base')">
+          </div>
+          <div class="admin-field">
+            <label>Blade Wear Cost</label>
+            <input type="number" id="cutBlade" step="0.1" onchange="updateCutting('blade')">
+          </div>
+        </div>
+      </div>
     </div>
-   </div>
-   <!-- QUOTE VIEW -->
-   <div id="quoteView">
-    <!-- CLIENT DETAILS -->
-    <div class="card">
-     <div class="card-title">
-      Client Details
-     </div>
-     <div class="row2">
-      <div>
-       <label>
-        Quote #
-       </label>
-       <input id="qNum" readonly=""/>
+
+    <!-- Profit & GST Settings -->
+    <div class="admin-section">
+      <div class="admin-section-head" onclick="toggleAdminSection('rates')">
+        <span>📊 Profit & GST</span>
+        <span class="admin-arrow">▼</span>
       </div>
-      <div>
-       <label>
-        Date
-       </label>
-       <input id="qDate" type="date"/>
+      <div id="adminRates" class="admin-section-body">
+        <div class="admin-field">
+          <label>Waste Allowance (%)</label>
+          <input type="number" id="rateWaste" step="1" onchange="updateRate('waste')">
+        </div>
+        <div class="admin-field">
+          <label>Profit Margin (%)</label>
+          <input type="number" id="rateProfit" step="1" onchange="updateRate('profit')">
+        </div>
+        <div class="admin-field">
+          <label>GST (%)</label>
+          <input type="number" id="rateGst" step="1" onchange="updateRate('gst')">
+        </div>
+        <div class="admin-field">
+          <label>Blocks Per Hour (labour)</label>
+          <input type="number" id="rateBph" step="1" onchange="updateRate('bph')">
+        </div>
       </div>
-     </div>
-     <div class="row2">
-      <div>
-       <label>
-        Client Name
-       </label>
-       <input id="cName" placeholder="Name"/>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div class="admin-section">
+      <div class="admin-section-head" onclick="toggleAdminSection('theme')">
+        <span>🎨 Appearance</span>
+        <span class="admin-arrow">▼</span>
       </div>
-      <div>
-       <label>
-        Phone
-       </label>
-       <input id="cPhone" placeholder="Phone"/>
+      <div id="adminTheme" class="admin-section-body">
+        <div class="theme-toggle-row">
+          <span>Dark Mode</span>
+          <div class="toggle" id="togDarkMode" onclick="toggleDarkMode()"></div>
+        </div>
       </div>
-     </div>
-     <label>
-      Address
-     </label>
-     <input id="cAddr" placeholder="Project address"/>
-     <div class="row2">
+    </div>
+
+    <!-- App Icon Settings -->
+    <div class="admin-section">
+      <div class="admin-section-head" onclick="toggleAdminSection('icons')">
+        <span>📱 App Icons</span>
+        <span class="admin-arrow">▼</span>
+      </div>
+      <div id="adminIcons" class="admin-section-body">
+        <p class="admin-hint">Upload custom icons for PWA installation. Icons should be square PNG images.</p>
+        <div class="admin-field">
+          <label>192×192 Icon</label>
+          <input type="file" id="icon192Upload" accept="image/png" onchange="handleIconUpload(192)">
+        </div>
+        <div class="admin-field">
+          <label>512×512 Icon</label>
+          <input type="file" id="icon512Upload" accept="image/png" onchange="handleIconUpload(512)">
+        </div>
+        <div class="admin-field">
+          <label>180×180 Apple Icon</label>
+          <input type="file" id="icon180Upload" accept="image/png" onchange="handleIconUpload(180)">
+        </div>
+        <p class="admin-hint" style="margin-top:10px;">Note: Icon changes require re-installing the PWA.</p>
+      </div>
+    </div>
+
+    <!-- Reset to Defaults -->
+    <div class="admin-section">
+      <button class="admin-btn admin-btn-danger" onclick="resetToDefaults()">🔄 Reset All to Defaults</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast">Settings Saved ✓</div>
+
+<div class="container">
+  
+  <!-- CLIENT DETAILS -->
+  <div class="card">
+    <div class="card-title">Client Details</div>
+    <div class="row2">
+      <div><label>Quote #</label><input id="qNum" readonly></div>
+      <div><label>Date</label><input type="date" id="qDate"></div>
+    </div>
+    <div class="row2">
+      <div><label>Client Name</label><input id="cName" placeholder="Name"></div>
+      <div><label>Phone</label><input id="cPhone" placeholder="Phone"></div>
+    </div>
+    <label>Address</label><input id="cAddr" placeholder="Project address">
+    <div class="row2">
+      <div><label>Project Type</label>
+        <select id="pType" onchange="handleProjectTypeChange()">
+          <option>Retaining Wall</option>
+          <option>Garden Bed</option>
+          <option>Letterbox</option>
+          <option>Stairs</option>
+          <option>Steps</option>
+          <option>Pizza Oven</option>
+          <option>Feature Wall</option>
+          <option>Boundary Wall</option>
+          <option>Seating/Bench</option>
+          <option>BBQ Area</option>
+          <option>Custom</option>
+        </select>
+      </div>
+      <div><label>Site Conditions</label>
+        <select id="soilType" onchange="handleSoilTypeChange()">
+          <option value="sand">Sand</option>
+          <option value="clay">Clay</option>
+          <option value="limestone">Limestone (caprock)</option>
+        </select>
+      </div>
+    </div>
+    <label>Notes</label><input id="notes" placeholder="Access, slopes, soil conditions...">
+  </div>
+
+  <!-- BLOCK GROUPS -->
+  <div class="card">
+    <div class="card-title">Block Groups</div>
+    <div id="groupsBox"></div>
+    <button class="add-btn" onclick="addGroup()">+ Add Block Group</button>
+  </div>
+
+  <!-- EQUIPMENT -->
+  <div class="card">
+    <div class="card-title">Equipment & Services</div>
+    <div class="row3">
       <div>
-       <label>
-        Project Type
-       </label>
-       <select id="pType" onchange="handleProjectTypeChange()">
-        <option>
-         Retaining Wall
-        </option>
-        <option>
-         Garden Bed
-        </option>
-        <option>
-         Letterbox
-        </option>
-        <option>
-         Stairs
-        </option>
-        <option>
-         Steps
-        </option>
-        <option>
-         Pizza Oven
-        </option>
-        <option>
-         Feature Wall
-        </option>
-        <option>
-         Boundary Wall
-        </option>
-        <option>
-         Seating/Bench
-        </option>
-        <option>
-         BBQ Area
-        </option>
-        <option>
-         Custom
-        </option>
-       </select>
+        <label>Staff Days</label>
+        <input type="number" id="staffDays" value="0" step="0.5" onchange="calcAll()">
+        <div class="hint">$2,000/day</div>
       </div>
       <div>
-       <label>
-        Notes
-       </label>
-       <input id="notes" placeholder="Access, slopes..."/>
+        <label>Mobilis. (km)</label>
+        <input type="number" id="mobKm" value="0" onchange="calcAll()">
+        <div class="hint">$1.50/km</div>
       </div>
-     </div>
+      <div>
+        <label>Delivery</label>
+        <input type="number" id="delLoads" value="0" onchange="calcAll()">
+        <div class="hint">$120/load</div>
+      </div>
     </div>
-    <!-- BLOCK GROUPS -->
-    <div class="card">
-     <div class="card-title">
-      Block Groups
-     </div>
-     <div id="groupsBox">
-     </div>
-     <button class="add-btn" onclick="addGroup()">
-      + Add Block Group
-     </button>
+    <div class="toggle-row">
+      <label>Skip Bin</label>
+      <div class="toggle" id="togSkip" onclick="togSkip()"></div>
     </div>
-    <!-- EQUIPMENT -->
-    <div class="card">
-     <div class="card-title">
-      Equipment &amp; Services
-     </div>
-     <div class="row3">
-      <div>
-       <label>
-        Staff Days
-       </label>
-       <input id="staffDays" onchange="calcAll()" step="0.5" type="number" value="0"/>
-       <div class="hint">
-        $2,000/day
-       </div>
-      </div>
-      <div>
-       <label>
-        Mobilis. (km)
-       </label>
-       <input id="mobKm" onchange="calcAll()" type="number" value="0"/>
-       <div class="hint">
-        $1.50/km
-       </div>
-      </div>
-      <div>
-       <label>
-        Delivery
-       </label>
-       <input id="delLoads" onchange="calcAll()" type="number" value="0"/>
-       <div class="hint">
-        $120/load
-       </div>
-      </div>
-     </div>
-     <div class="toggle-row">
-      <label>
-       Skip Bin
-      </label>
-      <div class="toggle" id="togSkip" onclick="togSkip()">
-      </div>
-     </div>
-     <div class="nested hide" id="skipSec">
-      <label>
-       Size
-      </label>
+    <div id="skipSec" class="nested hide">
+      <label>Size</label>
       <select id="skipSize" onchange="calcAll()">
-       <option value="300">
-        2m  $300
-       </option>
-       <option value="350">
-        3m  $350
-       </option>
-       <option selected="" value="400">
-        4m  $400
-       </option>
-       <option value="600">
-        6m  $600
-       </option>
+        <option value="300">2m³ – $300</option>
+        <option value="350">3m³ – $350</option>
+        <option value="400" selected>4m³ – $400</option>
+        <option value="600">6m³ – $600</option>
       </select>
-     </div>
     </div>
-    <!-- TOTALS -->
-    <div class="card">
-     <div class="card-title">
-      Grand Totals
-     </div>
-     <div id="matSummary">
-     </div>
-     <div class="internal" id="intBox">
-     </div>
-     <div id="cliBox">
-     </div>
-     <div class="total-box">
-      <div class="lbl">
-       TOTAL (inc GST)
-      </div>
-      <div class="amt" id="grandTot">
-       $0.00
-      </div>
-     </div>
-     <div class="terms">
-      <strong>
-       Terms:
-      </strong>
-      50% deposit on booking  50% on completion  
-      Variations quoted separately  Weather delays may apply  Valid 30 days
-     </div>
-    </div>
-    <!-- BUTTONS -->
-    <button class="btn btn-primary" onclick="pdfQuote()">
-     Client Quote PDF
-    </button>
-    <button class="btn btn-dark" onclick="pdfMaterials()">
-     Materials Order
-    </button>
-    <button class="btn btn-outline" onclick="pdfJob()">
-     Job Sheet
-    </button>
-   </div>
   </div>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-  </script>
-  <script>
-   /* KB Stone Pro - App Logic v2 */
 
-var CFG = {
-  blocks: {
-    'mc': { n: '1000350350 Cream', p: 28, h: 0.35, l: 1, hd: 1 },
-    'mn': { n: '1000350350 Natural', p: 36, h: 0.35, l: 1, hd: 1.3 },
-    'mg': { n: '1000350350 Grey', p: 23, h: 0.35, l: 1, hd: 1.7 },
-    'sc': { n: '500350200 Cream', p: 18, h: 0.2, l: 0.5, hd: 1 },
-    'sn': { n: '500350200 Natural', p: 22, h: 0.2, l: 0.5, hd: 1.3 },
-    'sg': { n: '500350200 Grey', p: 15, h: 0.2, l: 0.5, hd: 1.7 }
-  },
-  mat: { cement: 11, sand: 40, cap: 12, pipe: 15, reo: 12, oxide: 25, stick: 30 },
-  equip: { staff: 2000, mob: 1.5, del: 120 },
-  cut: { base: 3.5, blade: 0.5 },
-  rate: { waste: 8, profit: 20, gst: 10, bph: 18 }
-};
+  <!-- TOTALS -->
+  <div class="card">
+    <div class="card-title">Grand Totals</div>
+    <div id="matSummary"></div>
+    <div id="intBox" class="internal"></div>
+    <div id="cliBox"></div>
+    <div class="total-box">
+      <div class="lbl">TOTAL (inc GST)</div>
+      <div class="amt" id="grandTot">$0.00</div>
+    </div>
+    <div class="terms">
+      <strong>Terms:</strong> 50% deposit on booking • 50% on completion • 
+      Variations quoted separately • Weather delays may apply • Valid 30 days
+    </div>
+  </div>
 
-var groups = [];
-var gid = 0;
-var view = 'int';
-
-// Initialize
-function init() {
-  var d = new Date();
-  document.getElementById('qNum').value = 'KB-' + d.getFullYear() + 
-    String(d.getMonth() + 1).padStart(2, '0') + 
-    String(d.getDate()).padStart(2, '0') + '-001';
-  document.getElementById('qDate').value = d.toISOString().split('T')[0];
-  addGroup();
-}
-
-// View Toggle
-function setView(v) {
-  view = v;
-  document.getElementById('btnInt').className = v === 'int' ? 'active' : '';
-  document.getElementById('btnCli').className = v === 'cli' ? 'active' : '';
-  document.getElementById('btnSettings').className = v === 'settings' ? 'active' : '';
-  document.getElementById('intBox').className = v === 'int' ? 'internal' : 'internal hide';
+  <!-- BUTTONS -->
+  <button class="btn btn-primary" onclick="pdfQuote()">📄 Client Quote PDF</button>
+  <button class="btn btn-dark" onclick="pdfMaterials()">📦 Materials Order</button>
+  <button class="btn btn-outline" onclick="pdfJob()">👷 Job Sheet</button>
   
-  // Show/hide main views
-  if (v === 'settings') {
-    document.getElementById('settingsView').classList.remove('hide');
-    document.getElementById('quoteView').classList.add('hide');
-    populateAdminFields(); // Load current settings
-  } else {
-    document.getElementById('settingsView').classList.add('hide');
-    document.getElementById('quoteView').classList.remove('hide');
-  }
-}
+</div>
 
-// Check if project type requires stairs fields
-function isStairsProject() {
-  var projectType = document.getElementById('pType').value;
-  return projectType === 'Steps' || projectType === 'Stairs';
-}
+<!-- Wall Diagram Modal -->
+<div id="diagramModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close" onclick="closeDiagram()">&times;</span>
+    <h3 style="margin-top:0;">Wall Block Diagram</h3>
+    <canvas id="diagramCanvas"></canvas>
+    <div>
+      <button onclick="saveDiagramPNG()">💾 Save PNG</button>
+      <button onclick="attachDiagramToPDF()">📎 Attach to PDF</button>
+    </div>
+  </div>
+</div>
 
-// Handle project type change
-function handleProjectTypeChange() {
-  render(); // Re-render to show/hide stairs fields
-}
+<script data-cfasync="false="false" src="worker.js"></script>
+<script data-cfasync="false" src="pdf.js"></script>
+<script data-cfasync="false" src="admin.js"></script>
+<script data-cfasync="false" src="pwa.js"></script>
 
-// Skip Bin Toggle
-function togSkip() {
-  document.getElementById('togSkip').classList.toggle('on');
-  document.getElementById('skipSec').classList.toggle('hide');
-  calcAll();
-}
-
-// Add Block Group
-function addGroup() {
-  groups.push({
-    id: ++gid,
-    open: true,
-    bt: 'mc',
-    wl: 0,
-    wh: 0,
-    bo: 0,
-    ct: 0,
-    cq: 0,
-    cap: 0,
-    drain: 0,
-    reo: 0,
-    oxide: 0,
-    stick: 0,
-    // Stairs properties
-    stairSteps: 0,
-    stairHeight: 200,
-    stairDepth: 300
-  });
-  render();
-  calcAll();
-}
-
-// Delete Block Group
-function delGroup(id) {
-  if (groups.length < 2) {
-    alert('Need at least one group');
-    return;
-  }
-  groups = groups.filter(function(g) { return g.id !== id; });
-  render();
-  calcAll();
-}
-
-// Toggle Group Expand/Collapse
-function togGroup(id) {
-  groups.forEach(function(g) {
-    if (g.id === id) g.open = !g.open;
-  });
-  render();
-}
-
-// Update Group Field
-function upd(id, k, v) {
-  groups.forEach(function(g) {
-    if (g.id === id) g[k] = v;
-  });
-  calcAll();
-}
-
-// Calculate Single Group
-function calcGroup(g) {
-  var b = CFG.blocks[g.bt];
-  var layers = g.wh > 0 ? Math.ceil(g.wh / b.h) : 0;
-  var bpm = 1 / b.l;
-  var base = Math.ceil(g.wl * bpm * layers);
-  var waste = Math.ceil(base * (CFG.rate.waste / 100));
-  var auto = base + waste;
-  var tot = g.bo > 0 ? g.bo : auto;
-  var bCost = tot * b.p;
-  
-  var sandM3 = tot * 0.015;
-  var scoops = Math.ceil(sandM3 * 3);
-  var sandC = scoops * CFG.mat.sand;
-  var bags = Math.ceil(sandM3 / 0.15);
-  var cemC = bags * CFG.mat.cement;
-  
-  var cutC = g.cq * g.ct * CFG.cut.base * b.hd;
-  var bladeC = g.cq * g.ct * CFG.cut.blade;
-  var cutHrs = g.cq * g.ct * 0.1;
-  
-  var capC = g.cap * CFG.mat.cap;
-  var drainC = g.drain * CFG.mat.pipe;
-  var reoC = g.reo * CFG.mat.reo;
-  var oxideC = g.oxide * CFG.mat.oxide;
-  var stickC = g.stick * CFG.mat.stick;
-  
-  var labHrs = tot / CFG.rate.bph + cutHrs;
-  var grpTot = bCost + sandC + cemC + cutC + bladeC + capC + drainC + reoC + oxideC + stickC;
-  
-  return {
-    b: b, layers: layers, bpm: bpm, base: base, waste: waste, auto: auto,
-    tot: tot, bCost: bCost, scoops: scoops, sandC: sandC, bags: bags, cemC: cemC,
-    cutC: cutC, bladeC: bladeC, cutHrs: cutHrs, capC: capC, drainC: drainC,
-    reoC: reoC, oxideC: oxideC, stickC: stickC, labHrs: labHrs, grpTot: grpTot
-  };
-}
-
-// Calculate All & Aggregate
-function calcAll() {
-  var agg = {
-    blks: {},
-    scoops: 0,
-    bags: 0,
-    cap: 0,
-    drain: 0,
-    reo: 0,
-    oxide: 0,
-    stick: 0,
-    cuts: 0,
-    cutC: 0,
-    bladeC: 0,
-    labHrs: 0,
-    matC: 0,
-    grps: []
-  };
-
-  groups.forEach(function(g) {
-    var c = calcGroup(g);
-    agg.grps.push({ g: g, c: c });
-    
-    if (!agg.blks[g.bt]) agg.blks[g.bt] = { n: c.b.n, q: 0, cost: 0 };
-    agg.blks[g.bt].q += c.tot;
-    agg.blks[g.bt].cost += c.bCost;
-    
-    agg.scoops += c.scoops;
-    agg.bags += c.bags;
-    agg.cap += g.cap;
-    agg.drain += g.drain;
-    agg.reo += g.reo;
-    agg.oxide += g.oxide;
-    agg.stick += g.stick;
-    agg.cuts += g.cq * g.ct;
-    agg.cutC += c.cutC;
-    agg.bladeC += c.bladeC;
-    agg.labHrs += c.labHrs;
-    agg.matC += c.grpTot;
-  });
-
-  // Equipment
-  var staffD = parseFloat(document.getElementById('staffDays').value) || 0;
-  var mobK = parseFloat(document.getElementById('mobKm').value) || 0;
-  var delL = parseInt(document.getElementById('delLoads').value) || 0;
-  var skipOn = document.getElementById('togSkip').classList.contains('on');
-  var skipC = skipOn ? parseInt(document.getElementById('skipSize').value) : 0;
-
-  var staffC = staffD * CFG.equip.staff;
-  var mobC = mobK * CFG.equip.mob;
-  var delC = delL * CFG.equip.del;
-  var equipC = staffC + mobC + delC + skipC;
-
-  // Totals
-  var sub = agg.matC + equipC;
-  var profit = sub * (CFG.rate.profit / 100);
-  var gst = (sub + profit) * (CFG.rate.gst / 100);
-  var grand = sub + profit + gst;
-
-  // Store in aggregation
-  agg.staffD = staffD;
-  agg.mobK = mobK;
-  agg.delL = delL;
-  agg.skipOn = skipOn;
-  agg.skipSize = skipOn ? document.getElementById('skipSize').selectedOptions[0].text : '';
-  agg.staffC = staffC;
-  agg.mobC = mobC;
-  agg.delC = delC;
-  agg.skipC = skipC;
-  agg.equipC = equipC;
-  agg.sub = sub;
-  agg.profit = profit;
-  agg.gst = gst;
-  agg.grand = grand;
-
-  // Store globally for PDFs
-  window.QD = {
-    num: document.getElementById('qNum').value,
-    date: document.getElementById('qDate').value,
-    name: document.getElementById('cName').value,
-    phone: document.getElementById('cPhone').value,
-    addr: document.getElementById('cAddr').value,
-    type: document.getElementById('pType').value,
-    notes: document.getElementById('notes').value,
-    agg: agg
-  };
-
-  render();
-  renderTotals(agg);
-}
-
-// Render Block Groups
-function render() {
-  var h = '';
-  groups.forEach(function(g, i) {
-    var c = calcGroup(g);
-    var cls = g.open ? 'group open' : 'group';
-    
-    h += '<div class="' + cls + '">';
-    h += '<div class="group-head" onclick="togGroup(' + g.id + ')">';
-    h += '<h4><span class="arrow"></span> Group ' + (i + 1) + ': ' + c.b.n;
-    h += '<span class="sum">' + c.tot + ' blks  $' + c.grpTot.toFixed(0) + '</span></h4>';
-    h += '<button class="del-btn" onclick="event.stopPropagation();delGroup(' + g.id + ')">Delete</button>';
-    h += '</div>';
-    
-    h += '<div class="group-body">';
-    
-    // Block Type Select
-    h += '<label>Block Type</label><select onchange="upd(' + g.id + ',\'bt\',this.value)">';
-    for (var k in CFG.blocks) {
-      var B = CFG.blocks[k];
-      h += '<option value="' + k + '"' + (g.bt === k ? ' selected' : '') + '>' + B.n + '  $' + B.p + '</option>';
-    }
-    h += '</select>';
-    
-    // Stairs/Steps fields - ONLY shown when project type is Steps or Stairs
-    if (isStairsProject()) {
-      h += '<div class="nested" style="background:#e8f4fc;border-left:3px solid var(--blue);padding:12px;border-radius:6px;margin:12px 0;">';
-      h += '<label style="font-weight:700;color:var(--blue);margin-bottom:8px;"> Stairs / Steps Configuration</label>';
-      h += '<div class="row3">';
-      h += '<div><label>Steps</label><input type="number" value="' + (g.stairSteps || 0) + '" onchange="upd(' + g.id + ',\'stairSteps\',parseInt(this.value)||0)"></div>';
-      h += '<div><label>Height (mm)</label><input type="number" value="' + (g.stairHeight || 200) + '" onchange="upd(' + g.id + ',\'stairHeight\',parseFloat(this.value)||200)"></div>';
-      h += '<div><label>Depth (mm)</label><input type="number" value="' + (g.stairDepth || 300) + '" onchange="upd(' + g.id + ',\'stairDepth\',parseFloat(this.value)||300)"></div>';
-      h += '</div>';
-      var totalRise = ((g.stairSteps || 0) * (g.stairHeight || 200)) / 1000;
-      var totalRun = ((g.stairSteps || 0) * (g.stairDepth || 300)) / 1000;
-      h += '<div class="hint">Total Rise: ' + totalRise.toFixed(2) + 'm | Total Run: ' + totalRun.toFixed(2) + 'm</div>';
-      h += '</div>';
-    }
-    
-    // Dimensions
-    h += '<div class="row2">';
-    h += '<div><label>Length (m)</label><input type="number" value="' + g.wl + '" step="0.1" onchange="upd(' + g.id + ',\'wl\',parseFloat(this.value)||0)"></div>';
-    h += '<div><label>Height (m)</label><input type="number" value="' + g.wh + '" step="0.1" onchange="upd(' + g.id + ',\'wh\',parseFloat(this.value)||0)"></div>';
-    h += '</div>';
-    
-    // Override
-    h += '<label>Block Override (0=auto)</label>';
-    h += '<input type="number" value="' + g.bo + '" onchange="upd(' + g.id + ',\'bo\',parseInt(this.value)||0)">';
-    h += '<div class="hint">Auto: ' + c.layers + ' layers  ' + c.bpm.toFixed(1) + '/m  ' + g.wl + 'm = ' + c.base + ' + ' + c.waste + ' waste = ' + c.auto + '</div>';
-    
-    // Cuts
-    h += '<div class="row2">';
-    h += '<div><label>Cut Type</label><select onchange="upd(' + g.id + ',\'ct\',parseInt(this.value))">';
-    h += '<option value="0"' + (g.ct === 0 ? ' selected' : '') + '>None</option>';
-    h += '<option value="1"' + (g.ct === 1 ? ' selected' : '') + '>Half (1)</option>';
-    h += '<option value="2"' + (g.ct === 2 ? ' selected' : '') + '>Notch (2)</option>';
-    h += '<option value="3"' + (g.ct === 3 ? ' selected' : '') + '>Rip (3)</option>';
-    h += '<option value="4"' + (g.ct === 4 ? ' selected' : '') + '>Shape (4)</option>';
-    h += '</select></div>';
-    h += '<div><label>Blocks to Cut</label><input type="number" value="' + g.cq + '" onchange="upd(' + g.id + ',\'cq\',parseInt(this.value)||0)"></div>';
-    h += '</div>';
-    
-    // Materials
-    h += '<div class="row3">';
-    h += '<div><label>Capping</label><input type="number" value="' + g.cap + '" onchange="upd(' + g.id + ',\'cap\',parseInt(this.value)||0)"></div>';
-    h += '<div><label>Drain (m)</label><input type="number" value="' + g.drain + '" step="0.1" onchange="upd(' + g.id + ',\'drain\',parseFloat(this.value)||0)"></div>';
-    h += '<div><label>Reo (m)</label><input type="number" value="' + g.reo + '" step="0.1" onchange="upd(' + g.id + ',\'reo\',parseFloat(this.value)||0)"></div>';
-    h += '</div>';
-    
-    h += '<div class="row2">';
-    h += '<div><label>Oxide</label><input type="number" value="' + g.oxide + '" onchange="upd(' + g.id + ',\'oxide\',parseInt(this.value)||0)"></div>';
-    h += '<div><label>Stick Joints</label><input type="number" value="' + g.stick + '" onchange="upd(' + g.id + ',\'stick\',parseInt(this.value)||0)"></div>';
-    h += '</div>';
-    
-    h += '</div>'; // group-body
-    
-    // Group Totals
-    h += '<div class="group-totals">';
-    h += '<div class="line"><span>Blocks (' + c.tot + '  $' + c.b.p + ')</span><span>$' + c.bCost.toFixed(2) + '</span></div>';
-    h += '<div class="line"><span>Sand+Cement</span><span>$' + (c.sandC + c.cemC).toFixed(2) + '</span></div>';
-    if (c.cutC > 0) h += '<div class="line"><span>Cuts</span><span>$' + c.cutC.toFixed(2) + '</span></div>';
-    if (c.bladeC > 0) h += '<div class="line"><span>Blade</span><span>$' + c.bladeC.toFixed(2) + '</span></div>';
-    if (c.capC > 0) h += '<div class="line"><span>Capping</span><span>$' + c.capC.toFixed(2) + '</span></div>';
-    if (c.drainC > 0) h += '<div class="line"><span>Drainage</span><span>$' + c.drainC.toFixed(2) + '</span></div>';
-    if (c.reoC > 0) h += '<div class="line"><span>Reo</span><span>$' + c.reoC.toFixed(2) + '</span></div>';
-    if (c.oxideC > 0) h += '<div class="line"><span>Oxide</span><span>$' + c.oxideC.toFixed(2) + '</span></div>';
-    if (c.stickC > 0) h += '<div class="line"><span>Stick</span><span>$' + c.stickC.toFixed(2) + '</span></div>';
-    h += '<div class="line"><span>Labor</span><span>' + c.labHrs.toFixed(1) + ' hrs</span></div>';
-    h += '<div class="line total"><span>Group Total</span><span>$' + c.grpTot.toFixed(2) + '</span></div>';
-    h += '</div>';
-    
-    h += '</div>'; // group
-  });
-  
-  document.getElementById('groupsBox').innerHTML = h;
-}
-
-// Render Grand Totals
-function renderTotals(a) {
-  // Materials Summary
-  var m = '';
-  for (var k in a.blks) {
-    var B = a.blks[k];
-    m += '<div class="mat-box"><span>' + B.n + '</span><span class="val">' + B.q + '</span></div>';
-  }
-  m += '<div class="mat-box"><span>Sand (scoops)</span><span class="val">' + a.scoops + '</span></div>';
-  m += '<div class="mat-box"><span>Cement (bags)</span><span class="val">' + a.bags + '</span></div>';
-  if (a.cap > 0) m += '<div class="mat-box"><span>Capping</span><span class="val">' + a.cap + '</span></div>';
-  if (a.drain > 0) m += '<div class="mat-box"><span>AG Pipe</span><span class="val">' + a.drain + 'm</span></div>';
-  if (a.reo > 0) m += '<div class="mat-box"><span>Reo</span><span class="val">' + a.reo + 'm</span></div>';
-  if (a.oxide > 0) m += '<div class="mat-box"><span>Oxide</span><span class="val">' + a.oxide + '</span></div>';
-  if (a.stick > 0) m += '<div class="mat-box"><span>Stick Joints</span><span class="val">' + a.stick + '</span></div>';
-  if (a.skipOn) m += '<div class="mat-box"><span>Skip Bin</span><span class="val">' + a.skipSize.split('')[0] + '</span></div>';
-  m += '<div class="mat-box"><span>Total Labor</span><span class="val">' + a.labHrs.toFixed(1) + ' hrs</span></div>';
-  document.getElementById('matSummary').innerHTML = m;
-
-  // Internal Breakdown
-  var int = '';
-  int += '<div class="q-row hl"><span>Materials</span><span>$' + a.matC.toFixed(2) + '</span></div>';
-  if (a.cutC > 0) int += '<div class="q-row"><span> Cutting</span><span>$' + a.cutC.toFixed(2) + '</span></div>';
-  if (a.bladeC > 0) int += '<div class="q-row"><span> Blade Wear</span><span>$' + a.bladeC.toFixed(2) + '</span></div>';
-  int += '<div class="q-row hl"><span>Equipment</span><span>$' + a.equipC.toFixed(2) + '</span></div>';
-  if (a.staffC > 0) int += '<div class="q-row"><span> Staff (' + a.staffD + ' days)</span><span>$' + a.staffC.toFixed(2) + '</span></div>';
-  if (a.mobC > 0) int += '<div class="q-row"><span> Mobilis. (' + a.mobK + ' km)</span><span>$' + a.mobC.toFixed(2) + '</span></div>';
-  if (a.delC > 0) int += '<div class="q-row"><span> Delivery (' + a.delL + ')</span><span>$' + a.delC.toFixed(2) + '</span></div>';
-  if (a.skipC > 0) int += '<div class="q-row"><span> Skip Bin</span><span>$' + a.skipC.toFixed(2) + '</span></div>';
-  int += '<div class="q-row hl"><span><b>Subtotal</b></span><span><b>$' + a.sub.toFixed(2) + '</b></span></div>';
-  int += '<div class="q-row"><span>Profit (' + CFG.rate.profit + '%)</span><span>$' + a.profit.toFixed(2) + '</span></div>';
-  int += '<div class="q-row"><span>Margin</span><span>' + (a.grand > 0 ? ((a.profit / a.grand) * 100).toFixed(1) : 0) + '%</span></div>';
-  document.getElementById('intBox').innerHTML = int;
-
-  // Client Summary
-  var cli = '';
-  cli += '<div class="q-row"><span>Materials & Labour</span><span>$' + (a.sub + a.profit).toFixed(2) + '</span></div>';
-  cli += '<div class="q-row"><span>GST (' + CFG.rate.gst + '%)</span><span>$' + a.gst.toFixed(2) + '</span></div>';
-  document.getElementById('cliBox').innerHTML = cli;
-
-  // Grand Total
-  document.getElementById('grandTot').textContent = '$' + a.grand.toFixed(2);
-}
-
-// Initialize on load
-init();
-  </script>
-  <script>
-   /* KB Stone Pro - PDF Generators */
-
-// Client Quote PDF
-function pdfQuote() {
-  var d = window.QD, a = d.agg;
-  
-  var rows = '';
-  a.grps.forEach(function(x, i) {
-    var g = x.g, c = x.c;
-    rows += '<tr><td colspan="3" style="background:#f0f9ff;font-weight:600">Section ' + (i + 1) + ': ' + c.b.n + '</td></tr>';
-    rows += '<tr><td>Limestone Blocks</td><td>' + c.b.n + '</td><td style="text-align:right">' + c.tot + '</td></tr>';
-    rows += '<tr><td>Brickies Sand</td><td>Scoops</td><td style="text-align:right">' + c.scoops + '</td></tr>';
-    rows += '<tr><td>Cement</td><td>20kg bags</td><td style="text-align:right">' + c.bags + '</td></tr>';
-    if (g.cap > 0) rows += '<tr><td>Capping</td><td></td><td style="text-align:right">' + g.cap + '</td></tr>';
-    if (g.drain > 0) rows += '<tr><td>AG Pipe</td><td>metres</td><td style="text-align:right">' + g.drain + '</td></tr>';
-    if (g.reo > 0) rows += '<tr><td>Reo Bar</td><td>metres</td><td style="text-align:right">' + g.reo + '</td></tr>';
-    if (g.oxide > 0) rows += '<tr><td>Oxide</td><td>units</td><td style="text-align:right">' + g.oxide + '</td></tr>';
-    if (g.stick > 0) rows += '<tr><td>Stick Joints</td><td>units</td><td style="text-align:right">' + g.stick + '</td></tr>';
-  });
-
-  var html = '<!DOCTYPE html><html><head><title>Quote ' + d.num + '</title>';
-  html += '<style>';
-  html += 'body{font-family:Arial,sans-serif;padding:40px;max-width:800px;margin:0 auto;font-size:13px}';
-  html += '.hdr{border-bottom:3px solid #00A3E8;padding-bottom:16px;margin-bottom:24px}';
-  html += '.hdr h1{color:#00A3E8;margin:0;font-size:26px}';
-  html += '.hdr p{margin:4px 0;font-size:11px;color:#666}';
-  html += '.info{display:flex;justify-content:space-between;margin-bottom:24px}';
-  html += '.info div{font-size:12px}';
-  html += '.info strong{color:#00A3E8}';
-  html += '.sec{margin-bottom:20px}';
-  html += '.sec h3{color:#00A3E8;border-bottom:1px solid #ddd;padding-bottom:6px;margin-bottom:12px;font-size:15px}';
-  html += 'table{width:100%;border-collapse:collapse}';
-  html += 'th,td{padding:8px;text-align:left;border-bottom:1px solid #eee;font-size:12px}';
-  html += 'th{background:#f8f8f8}';
-  html += '.tot-row{background:#00A3E8;color:#fff}';
-  html += '.tot-row td{font-size:16px;font-weight:700;padding:12px}';
-  html += '.terms{font-size:10px;color:#666;margin-top:24px;padding:12px;background:#f9f9f9;border-radius:6px;line-height:1.5}';
-  html += '.ftr{margin-top:30px;text-align:center;font-size:10px;color:#999}';
-  html += '</style></head><body>';
-  
-  // Header
-  html += '<div class="hdr">';
-  html += '<h1>KB Stone Pty Ltd</h1>';
-  html += '<p>ABN: 75 686 625 801 | ACN: 686 625 801</p>';
-  html += '<p> 0451 838 748 |  kieron@kbstone.org |  kbstone.org</p>';
-  html += '</div>';
-  
-  // Quote Info
-  html += '<div class="info">';
-  html += '<div><strong>Quote To:</strong><br>' + (d.name || 'Client') + '<br>';
-  if (d.phone) html += d.phone + '<br>';
-  html += (d.addr || 'Address') + '</div>';
-  html += '<div style="text-align:right"><strong>Quote #:</strong> ' + d.num + '<br>';
-  html += '<strong>Date:</strong> ' + d.date + '<br>';
-  html += '<strong>Valid:</strong> 30 days</div>';
-  html += '</div>';
-  
-  // Project
-  html += '<div class="sec"><h3>Project: ' + d.type + '</h3>';
-  if (d.notes) html += '<p style="color:#666">' + d.notes + '</p>';
-  html += '</div>';
-  
-  // Scope
-  html += '<div class="sec"><h3>Scope of Works</h3>';
-  html += '<table><tr><th>Item</th><th>Details</th><th style="text-align:right">Qty</th></tr>';
-  html += rows;
-  if (a.skipOn) html += '<tr><td>Skip Bin</td><td>' + a.skipSize + '</td><td style="text-align:right">1</td></tr>';
-  if (a.staffD > 0) html += '<tr><td>Installation</td><td>Staff & Machine</td><td style="text-align:right">' + a.staffD + ' days</td></tr>';
-  if (a.delL > 0) html += '<tr><td>Delivery</td><td>Loads</td><td style="text-align:right">' + a.delL + '</td></tr>';
-  html += '</table></div>';
-  
-  // Total
-  html += '<div class="sec"><h3>Quote Total</h3>';
-  html += '<table>';
-  html += '<tr><td>Materials & Labour</td><td style="text-align:right">$' + (a.sub + a.profit).toFixed(2) + '</td></tr>';
-  html += '<tr><td>GST (10%)</td><td style="text-align:right">$' + a.gst.toFixed(2) + '</td></tr>';
-  html += '<tr class="tot-row"><td>TOTAL</td><td style="text-align:right">$' + a.grand.toFixed(2) + '</td></tr>';
-  html += '</table></div>';
-  
-  // Terms
-  html += '<div class="terms"><strong>Terms:</strong> ';
-  html += '50% deposit on booking  50% on completion  Variations quoted separately  ';
-  html += 'Client responsible for site access  Weather delays may apply  Valid 30 days</div>';
-  
-  // Footer
-  html += '<div class="ftr">KB Stone Pty Ltd | Professional Limestone & Natural Stone | Swan Valley, Perth</div>';
-  html += '</body></html>';
-  
-  var w = window.open('', '_blank');
-  w.document.write(html);
-  w.document.close();
-  setTimeout(function() { w.print(); }, 300);
-}
-
-// Materials Order PDF
-function pdfMaterials() {
-  var d = window.QD, a = d.agg;
-  
-  var rows = '';
-  for (var k in a.blks) {
-    var B = a.blks[k];
-    rows += '<tr><td><div class="cb"></div></td><td>' + B.n + '</td><td><b>' + B.q + '</b></td><td></td></tr>';
-  }
-  rows += '<tr><td><div class="cb"></div></td><td>Brickies Sand</td><td><b>' + a.scoops + ' scoops</b></td><td>' + (a.scoops / 3).toFixed(1) + 'm</td></tr>';
-  rows += '<tr><td><div class="cb"></div></td><td>Cement 20kg</td><td><b>' + a.bags + ' bags</b></td><td></td></tr>';
-  if (a.cap > 0) rows += '<tr><td><div class="cb"></div></td><td>Capping</td><td><b>' + a.cap + '</b></td><td></td></tr>';
-  if (a.drain > 0) rows += '<tr><td><div class="cb"></div></td><td>AG Pipe</td><td><b>' + a.drain + 'm</b></td><td></td></tr>';
-  if (a.reo > 0) rows += '<tr><td><div class="cb"></div></td><td>Reo Bar</td><td><b>' + a.reo + 'm</b></td><td></td></tr>';
-  if (a.oxide > 0) rows += '<tr><td><div class="cb"></div></td><td>Oxide</td><td><b>' + a.oxide + '</b></td><td></td></tr>';
-  if (a.stick > 0) rows += '<tr><td><div class="cb"></div></td><td>Stick Joints</td><td><b>' + a.stick + '</b></td><td></td></tr>';
-  if (a.skipOn) rows += '<tr><td><div class="cb"></div></td><td>Skip Bin</td><td><b>' + a.skipSize + '</b></td><td></td></tr>';
-
-  var html = '<!DOCTYPE html><html><head><title>Materials ' + d.num + '</title>';
-  html += '<style>';
-  html += 'body{font-family:Arial,sans-serif;padding:40px;max-width:600px;margin:0 auto}';
-  html += 'h1{color:#00A3E8;font-size:20px;border-bottom:2px solid #00A3E8;padding-bottom:8px}';
-  html += '.info{background:#f0f9ff;padding:12px;border-radius:6px;margin-bottom:16px;font-size:12px}';
-  html += 'table{width:100%;border-collapse:collapse}';
-  html += 'th,td{padding:10px;text-align:left;border:1px solid #ddd;font-size:12px}';
-  html += 'th{background:#00A3E8;color:#fff}';
-  html += '.cb{width:20px;height:20px;border:2px solid #333}';
-  html += '</style></head><body>';
-  
-  html += '<h1> Materials Order</h1>';
-  html += '<div class="info"><b>Quote:</b> ' + d.num + ' | <b>Client:</b> ' + d.name + '<br>';
-  html += '<b>Address:</b> ' + d.addr + ' | <b>Date:</b> ' + d.date + '</div>';
-  html += '<table><tr><th style="width:36px"></th><th>Item</th><th>Qty</th><th>Notes</th></tr>';
-  html += rows + '</table>';
-  html += '<p style="margin-top:24px;font-size:10px;color:#666">Generated: ' + new Date().toLocaleString() + '</p>';
-  html += '</body></html>';
-  
-  var w = window.open('', '_blank');
-  w.document.write(html);
-  w.document.close();
-  setTimeout(function() { w.print(); }, 300);
-}
-
-// Job Sheet PDF
-function pdfJob() {
-  var d = window.QD, a = d.agg;
-  
-  var mats = '';
-  a.grps.forEach(function(x, i) {
-    var g = x.g, c = x.c;
-    mats += '<tr style="background:#f0f9ff"><td colspan="2"><b>Section ' + (i + 1) + ': ' + c.b.n + '</b></td></tr>';
-    mats += '<tr><td>Blocks</td><td>' + c.tot + '</td></tr>';
-    mats += '<tr><td>Sand</td><td>' + c.scoops + ' scoops</td></tr>';
-    mats += '<tr><td>Cement</td><td>' + c.bags + ' bags</td></tr>';
-    if (g.ct > 0 && g.cq > 0) mats += '<tr><td>Cuts</td><td>' + g.cq + '  ' + g.ct + ' cuts</td></tr>';
-  });
-
-  var html = '<!DOCTYPE html><html><head><title>Job ' + d.num + '</title>';
-  html += '<style>';
-  html += 'body{font-family:Arial,sans-serif;padding:40px;max-width:700px;margin:0 auto;font-size:12px}';
-  html += 'h1{color:#00A3E8;font-size:20px;border-bottom:2px solid #00A3E8;padding-bottom:8px}';
-  html += '.sec{margin-bottom:16px;padding:12px;background:#f9f9f9;border-radius:6px}';
-  html += '.sec h3{margin:0 0 10px 0;font-size:14px}';
-  html += 'table{width:100%;border-collapse:collapse}';
-  html += 'td{padding:6px;border-bottom:1px solid #eee}';
-  html += '.lbl{font-weight:600;width:35%;background:#f8f8f8}';
-  html += '.haz{background:#fee2e2;padding:12px;border-radius:6px;border-left:4px solid #ef4444;margin-bottom:16px}';
-  html += '.sign{border:1px solid #ccc;height:50px;margin-top:6px}';
-  html += '</style></head><body>';
-  
-  html += '<h1> Job Sheet</h1>';
-  
-  // Details
-  html += '<div class="sec"><h3> Details</h3><table>';
-  html += '<tr><td class="lbl">Quote #</td><td>' + d.num + '</td></tr>';
-  html += '<tr><td class="lbl">Client</td><td>' + d.name + '</td></tr>';
-  html += '<tr><td class="lbl">Phone</td><td>' + d.phone + '</td></tr>';
-  html += '<tr><td class="lbl">Address</td><td>' + d.addr + '</td></tr>';
-  html += '<tr><td class="lbl">Project</td><td>' + d.type + '</td></tr>';
-  html += '<tr><td class="lbl">Est. Hours</td><td>' + a.labHrs.toFixed(1) + '</td></tr>';
-  html += '<tr><td class="lbl">Staff Days</td><td>' + a.staffD + '</td></tr>';
-  html += '</table></div>';
-  
-  // Materials
-  html += '<div class="sec"><h3> Materials</h3><table>' + mats + '</table></div>';
-  
-  // Notes
-  html += '<div class="sec"><h3> Notes</h3><p>' + (d.notes || 'None') + '</p></div>';
-  
-  // Hazards
-  html += '<div class="haz"><h3 style="margin:0 0 8px 0"> Hazards</h3><div class="sign"></div></div>';
-  
-  // Sign-off
-  html += '<div class="sec"><h3> Sign-off</h3><table>';
-  html += '<tr><td class="lbl">Completed By</td><td></td></tr>';
-  html += '<tr><td class="lbl">Date</td><td></td></tr>';
-  html += '<tr><td class="lbl">Client Sig</td><td><div class="sign"></div></td></tr>';
-  html += '</table></div>';
-  
-  html += '</body></html>';
-  
-  var w = window.open('', '_blank');
-  w.document.write(html);
-  w.document.close();
-  setTimeout(function() { w.print(); }, 300);
-}
-  </script>
-  <script>
-   /* KB Stone Pro - Admin Panel System */
-
-// Default configuration (used for reset)
-var DEFAULT_CFG = {
-  blocks: {
-    'mc': { n: '1000350350 Cream', p: 28, h: 0.35, l: 1, hd: 1 },
-    'mn': { n: '1000350350 Natural', p: 36, h: 0.35, l: 1, hd: 1.3 },
-    'mg': { n: '1000350350 Grey', p: 23, h: 0.35, l: 1, hd: 1.7 },
-    'sc': { n: '500350200 Cream', p: 18, h: 0.2, l: 0.5, hd: 1 },
-    'sn': { n: '500350200 Natural', p: 22, h: 0.2, l: 0.5, hd: 1.3 },
-    'sg': { n: '500350200 Grey', p: 15, h: 0.2, l: 0.5, hd: 1.7 }
-  },
-  mat: { cement: 11, sand: 40, cap: 12, pipe: 15, reo: 12, oxide: 25, stick: 30 },
-  equip: { staff: 2000, mob: 1.5, del: 120 },
-  cut: { base: 3.5, blade: 0.5 },
-  rate: { waste: 8, profit: 20, gst: 10, bph: 18 },
-  skipPrices: { 2: 300, 3: 350, 4: 400, 6: 600 }
-};
-
-// Skip bin prices (separate from CFG for easy update)
-var skipPrices = { 2: 300, 3: 350, 4: 400, 6: 600 };
-
-// Load settings from localStorage
-function loadSettings() {
-  var saved = localStorage.getItem('kbStoneSettings');
-  if (saved) {
-    try {
-      var settings = JSON.parse(saved);
-      // Merge saved settings with CFG
-      if (settings.blocks) CFG.blocks = settings.blocks;
-      if (settings.mat) CFG.mat = settings.mat;
-      if (settings.equip) CFG.equip = settings.equip;
-      if (settings.cut) CFG.cut = settings.cut;
-      if (settings.rate) CFG.rate = settings.rate;
-      if (settings.skipPrices) skipPrices = settings.skipPrices;
-    } catch (e) {
-      console.error('Error loading settings:', e);
-    }
-  }
-  
-  // Load dark mode
-  if (localStorage.getItem('kbStoneDarkMode') === 'true') {
-    document.body.classList.add('dark-mode');
-  }
-}
-
-// Save settings to localStorage
-function saveSettings() {
-  var settings = {
-    blocks: CFG.blocks,
-    mat: CFG.mat,
-    equip: CFG.equip,
-    cut: CFG.cut,
-    rate: CFG.rate,
-    skipPrices: skipPrices
-  };
-  localStorage.setItem('kbStoneSettings', JSON.stringify(settings));
-  showToast();
-  calcAll(); // Recalculate with new settings
-}
-
-// Show toast notification
-function showToast(message) {
-  var toast = document.getElementById('toast');
-  if (message) toast.textContent = message;
-  toast.classList.add('show');
-  setTimeout(function() {
-    toast.classList.remove('show');
-  }, 2000);
-}
-
-// Toggle admin panel
-// Toggle admin section (no longer used in new layout, kept for compatibility)
-function toggleAdminSection(section) {
-  // Function kept for compatibility but not used in new settings tab layout
-}
-
-// Populate admin fields with current values
-function populateAdminFields() {
-  // Materials
-  document.getElementById('matCement').value = CFG.mat.cement;
-  document.getElementById('matSand').value = CFG.mat.sand;
-  document.getElementById('matCap').value = CFG.mat.cap;
-  document.getElementById('matPipe').value = CFG.mat.pipe;
-  document.getElementById('matReo').value = CFG.mat.reo;
-  document.getElementById('matOxide').value = CFG.mat.oxide;
-  document.getElementById('matStick').value = CFG.mat.stick;
-  
-  // Equipment
-  document.getElementById('equipStaff').value = CFG.equip.staff;
-  document.getElementById('equipMob').value = CFG.equip.mob;
-  document.getElementById('equipDel').value = CFG.equip.del;
-  
-  // Skip prices
-  document.getElementById('skip2').value = skipPrices[2];
-  document.getElementById('skip3').value = skipPrices[3];
-  document.getElementById('skip4').value = skipPrices[4];
-  document.getElementById('skip6').value = skipPrices[6];
-  
-  // Cutting
-  document.getElementById('cutBase').value = CFG.cut.base;
-  document.getElementById('cutBlade').value = CFG.cut.blade;
-  
-  // Rates
-  document.getElementById('rateWaste').value = CFG.rate.waste;
-  document.getElementById('rateProfit').value = CFG.rate.profit;
-  document.getElementById('rateGst').value = CFG.rate.gst;
-  document.getElementById('rateBph').value = CFG.rate.bph;
-  
-  // Dark mode toggle
-  var darkModeOn = document.body.classList.contains('dark-mode');
-  document.getElementById('togDarkMode').classList.toggle('on', darkModeOn);
-  
-  // Render block types
-  renderBlockTypes();
-  
-  // Update skip select options
-  updateSkipSelect();
-}
-
-// Render block type list
-function renderBlockTypes() {
-  var html = '';
-  for (var code in CFG.blocks) {
-    var b = CFG.blocks[code];
-    html += '<div class="block-type-item" data-code="' + code + '">';
-    html += '<div class="info">';
-    html += '<div class="name">' + b.n + '</div>';
-    html += '<div class="details">$' + b.p + ' | H:' + b.h + 'm | L:' + b.l + 'm | HD:' + b.hd + '</div>';
-    html += '</div>';
-    html += '<div class="actions">';
-    html += '<button class="del-btn" onclick="deleteBlockType(\'' + code + '\')"></button>';
-    html += '</div>';
-    html += '</div>';
-  }
-  document.getElementById('blockTypeList').innerHTML = html;
-}
-
-// Add new block type
-function addBlockType() {
-  var code = document.getElementById('newBlockCode').value.trim().toLowerCase();
-  var name = document.getElementById('newBlockName').value.trim();
-  var price = parseFloat(document.getElementById('newBlockPrice').value) || 0;
-  var height = parseFloat(document.getElementById('newBlockHeight').value) || 0.35;
-  var length = parseFloat(document.getElementById('newBlockLength').value) || 1;
-  var hd = parseFloat(document.getElementById('newBlockHD').value) || 1;
-  
-  if (!code || !name || price <= 0) {
-    alert('Please fill in code, name, and price');
-    return;
-  }
-  
-  if (CFG.blocks[code]) {
-    alert('Block code already exists');
-    return;
-  }
-  
-  CFG.blocks[code] = { n: name, p: price, h: height, l: length, hd: hd };
-  
-  // Clear inputs
-  document.getElementById('newBlockCode').value = '';
-  document.getElementById('newBlockName').value = '';
-  document.getElementById('newBlockPrice').value = '';
-  document.getElementById('newBlockHeight').value = '';
-  document.getElementById('newBlockLength').value = '';
-  document.getElementById('newBlockHD').value = '1';
-  
-  saveSettings();
-  renderBlockTypes();
-  render(); // Re-render block groups to show new type
-}
-
-// Delete block type
-function deleteBlockType(code) {
-  if (Object.keys(CFG.blocks).length <= 1) {
-    alert('Cannot delete the last block type');
-    return;
-  }
-  
-  if (confirm('Delete block type "' + CFG.blocks[code].n + '"?')) {
-    delete CFG.blocks[code];
-    
-    // Update any groups using this block type to first available
-    var firstCode = Object.keys(CFG.blocks)[0];
-    groups.forEach(function(g) {
-      if (g.bt === code) g.bt = firstCode;
-    });
-    
-    saveSettings();
-    renderBlockTypes();
-    render();
-  }
-}
-
-// Update material pricing
-function updateMaterial(key) {
-  var inputId = 'mat' + key.charAt(0).toUpperCase() + key.slice(1);
-  var value = parseFloat(document.getElementById(inputId).value) || 0;
-  CFG.mat[key] = value;
-  saveSettings();
-}
-
-// Update equipment rates
-function updateEquipment(key) {
-  var inputId = 'equip' + key.charAt(0).toUpperCase() + key.slice(1);
-  var value = parseFloat(document.getElementById(inputId).value) || 0;
-  CFG.equip[key] = value;
-  saveSettings();
-}
-
-// Update skip price
-function updateSkipPrice(size) {
-  var value = parseFloat(document.getElementById('skip' + size).value) || 0;
-  skipPrices[size] = value;
-  updateSkipSelect();
-  saveSettings();
-}
-
-// Update skip select dropdown
-function updateSkipSelect() {
-  var select = document.getElementById('skipSize');
-  if (select) {
-    select.innerHTML = 
-      '<option value="' + skipPrices[2] + '">2m  $' + skipPrices[2] + '</option>' +
-      '<option value="' + skipPrices[3] + '">3m  $' + skipPrices[3] + '</option>' +
-      '<option value="' + skipPrices[4] + '" selected>4m  $' + skipPrices[4] + '</option>' +
-      '<option value="' + skipPrices[6] + '">6m  $' + skipPrices[6] + '</option>';
-  }
-}
-
-// Update cutting rates
-function updateCutting(key) {
-  var inputId = 'cut' + key.charAt(0).toUpperCase() + key.slice(1);
-  var value = parseFloat(document.getElementById(inputId).value) || 0;
-  CFG.cut[key] = value;
-  saveSettings();
-}
-
-// Update rate settings
-function updateRate(key) {
-  var inputId = 'rate' + key.charAt(0).toUpperCase() + key.slice(1);
-  var value = parseFloat(document.getElementById(inputId).value) || 0;
-  CFG.rate[key] = value;
-  saveSettings();
-}
-
-// Toggle dark mode
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  var isDark = document.body.classList.contains('dark-mode');
-  document.getElementById('togDarkMode').classList.toggle('on', isDark);
-  localStorage.setItem('kbStoneDarkMode', isDark.toString());
-  showToast(isDark ? 'Dark Mode On' : 'Light Mode On');
-}
-
-// Handle icon upload
-function handleIconUpload(size) {
-  var inputId = 'icon' + size + 'Upload';
-  var file = document.getElementById(inputId).files[0];
-  
-  if (!file) return;
-  
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    var base64 = e.target.result;
-    localStorage.setItem('kbStoneIcon' + size, base64);
-    showToast('Icon saved! Re-install PWA to apply.');
-  };
-  reader.readAsDataURL(file);
-}
-
-// Reset to defaults
-function resetToDefaults() {
-  if (confirm('Reset all settings to defaults? This cannot be undone.')) {
-    // Deep copy defaults
-    CFG.blocks = JSON.parse(JSON.stringify(DEFAULT_CFG.blocks));
-    CFG.mat = JSON.parse(JSON.stringify(DEFAULT_CFG.mat));
-    CFG.equip = JSON.parse(JSON.stringify(DEFAULT_CFG.equip));
-    CFG.cut = JSON.parse(JSON.stringify(DEFAULT_CFG.cut));
-    CFG.rate = JSON.parse(JSON.stringify(DEFAULT_CFG.rate));
-    skipPrices = JSON.parse(JSON.stringify(DEFAULT_CFG.skipPrices));
-    
-    // Clear localStorage
-    localStorage.removeItem('kbStoneSettings');
-    localStorage.removeItem('kbStoneDarkMode');
-    localStorage.removeItem('kbStoneIcon192');
-    localStorage.removeItem('kbStoneIcon512');
-    localStorage.removeItem('kbStoneIcon180');
-    
-    // Remove dark mode
-    document.body.classList.remove('dark-mode');
-    
-    // Refresh admin panel
-    populateAdminFields();
-    updateSkipSelect();
-    render();
-    calcAll();
-    
-    showToast('Reset to defaults');
-  }
-}
-
-// Load settings on page load
-loadSettings();
-updateSkipSelect();
-  </script>
-  <script>
-   /* PWA Install Prompt */
-var deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', function(e) {
-  e.preventDefault();
-  deferredPrompt = e;
-  // Show install banner if not already dismissed
-  if (!localStorage.getItem('installDismissed')) {
-    document.getElementById('installBanner').classList.remove('hide');
-  }
-});
-
-function installApp() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(function(choiceResult) {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the install prompt');
-      }
-      deferredPrompt = null;
-      document.getElementById('installBanner').classList.add('hide');
-    });
-  }
-}
-
-function dismissInstall() {
-  document.getElementById('installBanner').classList.add('hide');
-  localStorage.setItem('installDismissed', 'true');
-}
-
-/* Service Worker Registration */
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('sw.js').then(function(registration) {
-      console.log('ServiceWorker registered: ', registration.scope);
-    }).catch(function(error) {
-      console.log('ServiceWorker registration failed: ', error);
-    });
-  });
-}
-  </script>
- </body>
+</body>
 </html>
